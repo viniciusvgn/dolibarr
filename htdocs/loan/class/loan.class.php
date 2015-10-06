@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2014       Alexandre Spangaro   <alexandre.spangaro@gmail.com>
+/* Copyright (C) 2014       Alexandre Spangaro   <aspangaro.dolibarr@gmail.com>
  * Copyright (C) 2015       Frederic France      <frederic.france@free.fr>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -33,17 +33,13 @@ class Loan extends CommonObject
     public $table='loan';
     public $table_element='loan';
 
-    var $id;
 	var $rowid;
-    var $ref;
     var $datestart;
 	var $dateend;
     var $label;
     var $capital;
 	var $nbterm;
 	var $rate;
-    var $note_private;
-    var $note_public;
 	var $paid;
 	var $account_capital;
 	var $account_insurance;

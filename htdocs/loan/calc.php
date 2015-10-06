@@ -1,6 +1,6 @@
 <?php
 /* Copyright (C) 2002		David Tufts			<http://dave.imarc.net>
- * Copyright (C) 2014		Alexandre Spangaro	<alexandre.spangaro@gmail.com>
+ * Copyright (C) 2014		Alexandre Spangaro	<aspangaro.dolibarr@gmail.com>
  * Copyright (C) 2015		Frederic France		<frederic.france@free.fr>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -121,7 +121,7 @@ if (! empty($errors)) {
 
 llxHeader();
 
-print_fiche_titre($langs->trans("LoanCalc"));
+print load_fiche_titre($langs->trans("LoanCalc"));
 print $langs->trans('LoanCalcDesc');
 
 print '<form method="GET" name="information" action="'.$_SERVER['PHP_SELF'].'">';

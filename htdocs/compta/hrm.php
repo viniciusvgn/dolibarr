@@ -2,7 +2,7 @@
 /* Copyright (C) 2011		Dimitri Mouillard	<dmouillard@teclib.com>
  * Copyright (C) 2013-2015	Laurent Destailleur	<eldy@users.sourceforge.net>
  * Copyright (C) 2012-2014	Regis Houssin		<regis.houssin@capnetworks.com>
- * Copyright (C) 2015		Alexandre Spangaro	<alexandre.spangaro@gmail.com>
+ * Copyright (C) 2015		Alexandre Spangaro	<aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,7 +67,7 @@ $childids[]=$user->id;
 
 llxHeader(array(),$langs->trans('HRMArea'));
 
-print_fiche_titre($langs->trans("HRMArea"),'', 'title_hrm.png');
+print load_fiche_titre($langs->trans("HRMArea"),'', 'title_hrm.png');
 
 print '<div class="fichecenter"><div class="fichethirdleft">';
 

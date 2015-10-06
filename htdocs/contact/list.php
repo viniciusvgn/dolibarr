@@ -5,7 +5,7 @@
  * Copyright (C) 2005-2012  Regis Houssin           <regis.houssin@capnetworks.com>
  * Copyright (C) 2013-2015  Raphaël Doursenaud      <rdoursenaud@gpcsolutions.fr>
  * Copyright (C) 2013       Cédric Salvador         <csalvador@gpcsolutions.fr>
- * Copyright (C) 2013       Alexandre Spangaro      <alexandre.spangaro@gmail.com>
+ * Copyright (C) 2013       Alexandre Spangaro      <aspangaro.dolibarr@gmail.com>
  * Copyright (C) 2015       Jean-François Ferry     <jfefe@aternatik.fr>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -56,6 +56,7 @@ $search_priv=GETPOST("search_priv");
 $search_categ=GETPOST("search_categ",'int');
 $search_status=GETPOST("search_status",'int');
 if ($search_status=='') $search_status=1; // always display activ customer first
+$optioncss = GETPOST('optioncss','alpha');
 
 
 $type=GETPOST("type");
@@ -261,6 +262,7 @@ if ($result)
     if (!empty($search_categ)) $param.='&search_categ='.htmlspecialchars($search_categ);
     if ($search_status != '') $param.='&amp;search_status='.htmlspecialchars($search_status);
     if ($search_priv == '0' || $search_priv == '1') $param.="&search_priv=".htmlspecialchars($search_priv);
+    if ($optioncss != '') $param.='&optioncss='.$optioncss;
 
 	$num = $db->num_rows($result);
     $i = 0;
@@ -268,24 +270,11 @@ if ($result)
     print_barre_liste($titre, $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, '', $num, $nbtotalofrecords,'title_companies.png');
 
     print '<form method="post" action="'.$_SERVER["PHP_SELF"].'">';
+    if ($optioncss != '') print '<input type="hidden" name="optioncss" value="'.$optioncss.'">';
     print '<input type="hidden" name="token" value="'.$_SESSION['newtoken'].'">';
-    print '<input type="hidden" name="view" value="'.htmlspecialchars($view).'">';
+    print '<input type="hidden" name="view" value="'.dol_escape_htmltag($view).'">';
     print '<input type="hidden" name="sortfield" value="'.$sortfield.'">';
     print '<input type="hidden" name="sortorder" value="'.$sortorder.'">';
-
-    if (! empty($conf->categorie->enabled))
-    {
-		require_once DOL_DOCUMENT_ROOT . '/categories/class/categorie.class.php';
-    	$moreforfilter.=$langs->trans('Categories'). ': ';
-    	$moreforfilter.=$formother->select_categories(Categorie::TYPE_CONTACT,$search_categ,'search_categ',1);
-    	$moreforfilter.=' &nbsp; &nbsp; &nbsp; ';
-    }
-    if ($moreforfilter)
-    {
-    	print '<div class="liste_titre">';
-    	print $moreforfilter;
-    	print '</div>';
-    }
 
     if ($sall)
     {
@@ -295,7 +284,22 @@ if ($result)
 	{
         print $langs->trans("Filter")." (".$langs->trans("Lastname").", ".$langs->trans("Firstname")."): ".$search_firstlast_only;
 	}
-    print '<table class="liste" width="100%">';
+    
+    if (! empty($conf->categorie->enabled))
+    {
+		require_once DOL_DOCUMENT_ROOT . '/categories/class/categorie.class.php';
+    	$moreforfilter.=$langs->trans('Categories'). ': ';
+    	$moreforfilter.=$formother->select_categories(Categorie::TYPE_CONTACT,$search_categ,'search_categ',1);
+    	$moreforfilter.=' &nbsp; &nbsp; &nbsp; ';
+    }
+    if ($moreforfilter)
+    {
+    	print '<div class="liste_titre liste_titre_bydiv centpercent">';
+    	print $moreforfilter;
+    	print '</div>';
+    }
+
+    print '<table class="liste">';
 
     // Ligne des titres
     print '<tr class="liste_titre">';

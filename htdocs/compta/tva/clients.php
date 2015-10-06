@@ -90,9 +90,8 @@ if (empty($min)) {
 // Define modetax (0 or 1)
 // 0=normal, 1=option vat for services is on debit
 $modetax = $conf->global->TAX_MODE;
-if (isset($_REQUEST["modetax"])) {
-	$modetax=$_REQUEST["modetax"];
-}
+if (isset($_REQUEST["modetax"])) $modetax=$_REQUEST["modetax"];
+if (empty($modetax)) $modetax=0;
 
 // Security check
 $socid = GETPOST('socid','int');
@@ -100,6 +99,10 @@ if ($user->societe_id) {
 	$socid=$user->societe_id;
 }
 $result = restrictedArea($user, 'tax', '', '', 'charges');
+
+// Define modecompta ('CREANCES-DETTES' or 'RECETTES-DEPENSES')
+$modecompta = $conf->global->ACCOUNTING_MODE;
+if (GETPOST("modecompta")) $modecompta=GETPOST("modecompta");
 
 
 
@@ -228,7 +231,7 @@ $vatsup=$langs->trans("VATPaid");
 // VAT Received
 
 //print "<br>";
-//print_titre($vatcust);
+//print load_fiche_titre($vatcust);
 
 print "<table class=\"noborder\" width=\"100%\">";
 print "<tr class=\"liste_titre\">";
@@ -293,7 +296,14 @@ if (is_array($coll_list)) {
 } else {
 	$langs->load("errors");
 	if ($coll_list == -1) {
-		print '<tr><td colspan="5">' . $langs->trans("ErrorNoAccountancyModuleLoaded") . '</td></tr>';
+		if ($modecompta == 'CREANCES-DETTES')
+		{
+			print '<tr><td colspan="5">' . $langs->trans("ErrorNoAccountancyModuleLoaded") . '</td></tr>';
+		}
+		else
+		{
+			print '<tr><td colspan="5">' . $langs->trans("FeatureNotYetAvailable") . '</td></tr>';
+		}
 	} else if ($coll_list == -2) {
 		print '<tr><td colspan="5">' . $langs->trans("FeatureNotYetAvailable") . '</td></tr>';
 	} else {
@@ -307,7 +317,7 @@ if (is_array($coll_list)) {
 // VAT Paid
 
 //print "<br>";
-//print_titre($vatsup);
+//print load_fiche_titre($vatsup);
 
 //print "<table class=\"noborder\" width=\"100%\">";
 print "<tr class=\"liste_titre\">";
@@ -378,7 +388,14 @@ if (is_array($coll_list)) {
 } else {
 	$langs->load("errors");
 	if ($coll_list == -1) {
-		print '<tr><td colspan="5">' . $langs->trans("ErrorNoAccountancyModuleLoaded") . '</td></tr>';
+		if ($modecompta == 'CREANCES-DETTES')
+		{
+			print '<tr><td colspan="5">' . $langs->trans("ErrorNoAccountancyModuleLoaded") . '</td></tr>';
+		}
+		else
+		{
+			print '<tr><td colspan="5">' . $langs->trans("FeatureNotYetAvailable") . '</td></tr>';
+		}
 	} else if ($coll_list == -2) {
 		print '<tr><td colspan="5">' . $langs->trans("FeatureNotYetAvailable") . '</td></tr>';
 	} else {
@@ -458,7 +475,14 @@ if ($special_report) {
 	} else {
 		$langs->load("errors");
 		if ($coll_list == -1) {
-			print '<tr><td colspan="5">' . $langs->trans("ErrorNoAccountancyModuleLoaded") . '</td></tr>';
+			if ($modecompta == 'CREANCES-DETTES')
+			{
+				print '<tr><td colspan="5">' . $langs->trans("ErrorNoAccountancyModuleLoaded") . '</td></tr>';
+			}
+			else
+			{
+				print '<tr><td colspan="5">' . $langs->trans("FeatureNotYetAvailable") . '</td></tr>';
+			}
 		} else {
 			if ($coll_list == -2) {
 				print '<tr><td colspan="5">' . $langs->trans("FeatureNotYetAvailable") . '</td></tr>';
@@ -531,7 +555,14 @@ if ($special_report) {
 	} else {
 		$langs->load("errors");
 		if ($coll_list == -1) {
-			print '<tr><td colspan="5">' . $langs->trans("ErrorNoAccountancyModuleLoaded") . '</td></tr>';
+			if ($modecompta == 'CREANCES-DETTES')
+			{
+				print '<tr><td colspan="5">' . $langs->trans("ErrorNoAccountancyModuleLoaded") . '</td></tr>';
+			}
+			else
+			{
+				print '<tr><td colspan="5">' . $langs->trans("FeatureNotYetAvailable") . '</td></tr>';
+			}
 		} else {
 			if ($coll_list == -2) {
 				print '<tr><td colspan="5">' . $langs->trans("FeatureNotYetAvailable") . '</td></tr>';

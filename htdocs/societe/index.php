@@ -48,7 +48,7 @@ $helpurl='EN:Module_Third_Parties|FR:Module_Tiers|ES:M&oacute;dulo_Terceros';
 
 llxHeader("",$langs->trans("ThirdParties"),$helpurl);
 $linkback='';
-print_fiche_titre($transAreaType,$linkback,'title_companies.png');
+print load_fiche_titre($transAreaType,$linkback,'title_companies.png');
 
 
 //print '<table border="0" width="100%" class="notopnoleftnoright">';
@@ -181,8 +181,10 @@ if (! empty($conf->categorie->enabled) && ! empty($conf->global->CATEGORY_GRAPHS
 {
 	require_once DOL_DOCUMENT_ROOT.'/categories/class/categorie.class.php';
 	$elementtype = 'societe';
+
 	print '<br>';
-	print '<table class="noborder" width="100%">';
+
+	print '<table class="noborder nohover" width="100%">';
 	print '<tr class="liste_titre"><th colspan="2">'.$langs->trans("Categories").'</th></tr>';
 	print '<tr '.$bc[0].'><td align="center" colspan="2">';
 	$sql = "SELECT c.label, count(*) as nb";
@@ -226,7 +228,7 @@ if (! empty($conf->categorie->enabled) && ! empty($conf->global->CATEGORY_GRAPHS
 			{
 				$obj = $db->fetch_object($result);
 				$var=!$var;
-				print '<tr $bc[$var]><td>'.$obj->label.'</td><td>'.$obj->nb.'</td></tr>';
+				print '<tr '.$bc[$var].'><td>'.$obj->label.'</td><td>'.$obj->nb.'</td></tr>';
 				$total+=$obj->nb;
 				$i++;
 			}
@@ -248,6 +250,8 @@ print '</div><div class="fichetwothirdright"><div class="ficheaddleft">';
  */
 $max=15;
 $sql = "SELECT s.rowid, s.nom as name, s.client, s.fournisseur";
+$sql.= ", s.code_client";
+$sql.= ", s.code_fournisseur";
 $sql.= ", s.logo";
 $sql.= ", s.canvas, s.tms as datem, s.status as status";
 $sql.= " FROM ".MAIN_DB_PREFIX."societe as s";
@@ -296,8 +300,10 @@ if ($result)
             $thirdparty_static->logo = $objp->logo;
             $thirdparty_static->datem=$db->jdate($objp->datem);
             $thirdparty_static->status=$objp->status;
+            $thirdparty_static->code_client = $objp->code_client;
+            $thirdparty_static->code_fournisseur = $objp->code_fournisseur;
             $thirdparty_static->canvas=$objp->canvas;
-                    print $thirdparty_static->getNomUrl(1);
+            print $thirdparty_static->getNomUrl(1);
             print "</td>\n";
             // Type
             print '<td align="center">';

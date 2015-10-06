@@ -1,7 +1,7 @@
 <?php
 /* 
  * Copyright (C) 2013-2014 Olivier Geffroy      <jeff@jeffinfo.com>
- * Copyright (C) 2013-2014 Alexandre Spangaro   <alexandre.spangaro@gmail.com> 
+ * Copyright (C) 2013-2014 Alexandre Spangaro   <aspangaro.dolibarr@gmail.com> 
  * Copyright (C) 2014	   Florian Henry		<florian.henry@open-concept.pro>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -124,7 +124,7 @@ if ($result) {
 	print '<input type="hidden" name="action" value="import">';
 	
 	print '<table class="noborder" width="100%">';
-	print '<tr class="liste_titre"><td>' . $langs->trans("accountingaccount") . '</td>';
+	print '<tr class="liste_titre"><td>' . $langs->trans("AccountAccouting") . '</td>';
 	print '<td>' . $langs->trans("label") . '</td>';
 	print '<td>' . $langs->trans("Accountparent") . '</td>';
 	print '<td>' . $langs->trans("Pcgtype") . '</td>';

@@ -3,7 +3,7 @@
  * Copyright (C) 2004-2008 Laurent Destailleur  <eldy@users.sourceforge.net>
  * Copyright (C) 2009      Regis Houssin        <regis.houssin@capnetworks.com>
  * Copyright (C) 2014      Florian Henry        <florian.henry@open-concept.pro>
- * Copyright (C) 2015      Alexandre Spangaro   <alexandre.spangaro@gmail.com>
+ * Copyright (C) 2015      Alexandre Spangaro   <aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,29 +39,17 @@ class Don extends CommonObject
 	public $fk_element = 'fk_donation';
 	protected $ismultientitymanaged = 1;  	// 0=No test on entity, 1=Test with field entity, 2=Test with link by societe
 
-    var $id;
-    var $ref;
     var $date;
     var $amount;
-    var $firstname;
-    var $lastname;
     var $societe;
     var $address;
     var $zip;
     var $town;
-    var $country_id;
-    var $country_code;
-    var $country;
     var $email;
     var $public;
     var $fk_projet;
-    var $modepaiement;
-    var $modepaiementid;
-    var $note_private;
-    var $note_public;
-    var $statut;
-	var $modelpdf;
-    var $projet;
+    var $fk_typepayment;
+	var $num_payment;
 
 	/**
 	 * @deprecated
@@ -608,7 +596,7 @@ class Don extends CommonObject
         $sql.= " d.firstname, d.lastname, d.societe, d.amount, d.fk_statut, d.address, d.zip, d.town, ";
         $sql.= " d.fk_country, d.country as country_olddata, d.public, d.amount, d.fk_payment, d.paid, d.note_private, d.note_public, cp.libelle, d.email, d.phone, ";
         $sql.= " d.phone_mobile, d.fk_projet, d.model_pdf,";
-        $sql.= " p.title as project_label,";
+        $sql.= " p.ref as project_ref,";
         $sql.= " c.code as country_code, c.label as country";
         $sql.= " FROM ".MAIN_DB_PREFIX."don as d";
         $sql.= " LEFT JOIN ".MAIN_DB_PREFIX."projet as p ON p.rowid = d.fk_projet";
@@ -652,7 +640,7 @@ class Don extends CommonObject
 				$this->email          = $obj->email;
                 $this->phone          = $obj->phone;
                 $this->phone_mobile   = $obj->phone_mobile;
-                $this->project        = $obj->project_label;
+                $this->project        = $obj->project_ref;
                 $this->fk_projet      = $obj->fk_projet;
                 $this->public         = $obj->public;
                 $this->modepaymentid  = $obj->fk_payment;

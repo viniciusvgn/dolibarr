@@ -1,6 +1,6 @@
 <?php
 /* Copyright (C) 2013-2014 Olivier Geffroy		<jeff@jeffinfo.com>
- * Copyright (C) 2013-2014 Alexandre Spangaro	<alexandre.spangaro@gmail.com>
+ * Copyright (C) 2013-2014 Alexandre Spangaro	<aspangaro.dolibarr@gmail.com>
  * Copyright (C) 2014	   Florian Henry		<florian.henry@open-concept.pro>
  * Copyright (C) 2015	Jean-François Ferry		<jfefe@aternatik.fr>
  *
@@ -56,7 +56,7 @@ llxHeader('', $langs->trans("Bookkeeping"));
 $textprevyear = '<a href="' . $_SERVER["PHP_SELF"] . '?year=' . ($year_current - 1) . '">' . img_previous() . '</a>';
 $textnextyear = '&nbsp;<a href="' . $_SERVER["PHP_SELF"] . '?year=' . ($year_current + 1) . '">' . img_next() . '</a>';
 
-print_fiche_titre($langs->trans("AccountBalanceByMonth") . ' ' . $textprevyear . ' ' . $langs->trans("Year") . ' ' . $year_start . ' ' . $textnextyear);
+print load_fiche_titre($langs->trans("AccountBalanceByMonth") . ' ' . $textprevyear . ' ' . $langs->trans("Year") . ' ' . $year_start . ' ' . $textnextyear);
 
 $sql = "SELECT count(*) FROM " . MAIN_DB_PREFIX . "facturedet as fd";
 $sql .= " , " . MAIN_DB_PREFIX . "facture as f";

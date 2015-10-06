@@ -2,7 +2,7 @@
 /* Copyright (C) 2001-2003 Rodolphe Quiedeville <rodolphe@quiedeville.org>
  * Copyright (C) 2004-2014 Laurent Destailleur  <eldy@users.sourceforge.net>
  * Copyright (C) 2005-2010 Regis Houssin        <regis.houssin@capnetworks.com>
- * Copyright (C) 2011-2014 Alexandre Spangaro   <alexandre.spangaro@gmail.com>
+ * Copyright (C) 2011-2014 Alexandre Spangaro   <aspangaro.dolibarr@gmail.com>
  * Copyright (C) 2011-2014 Juanjo Menent	    <jmenent@2byte.es>
  * Copyright (C) 2015      Jean-François Ferry	<jfefe@aternatik.fr>
  *
@@ -75,7 +75,7 @@ if (GETPOST("mode") == 'sconly') $param='&mode=sconly';
 if ($sortfield) $param.='&sortfield='.$sortfield;
 if ($sortorder) $param.='&sortorder='.$sortorder;
 
-print_fiche_titre($title, ($year?"<a href='index.php?year=".($year-1).$param."'>".img_previous()."</a> ".$langs->trans("Year")." $year <a href='index.php?year=".($year+1).$param."'>".img_next()."</a>":""), 'title_accountancy.png');
+print load_fiche_titre($title, ($year?"<a href='index.php?year=".($year-1).$param."'>".img_previous()."</a> ".$langs->trans("Year")." $year <a href='index.php?year=".($year+1).$param."'>".img_next()."</a>":""), 'title_accountancy.png');
 
 if ($year) $param.='&year='.$year;
 
@@ -92,7 +92,7 @@ if ($conf->salaries->enabled)
 	{
 		$sal = new PaymentSalary($db);
 
-		print_fiche_titre($langs->trans("SalariesPayments").($year?' ('.$langs->trans("Year").' '.$year.')':''), '', '');
+		print load_fiche_titre($langs->trans("SalariesPayments").($year?' ('.$langs->trans("Year").' '.$year.')':''), '', '');
 
 		$sql = "SELECT s.rowid, s.amount, s.label, s.datep as datep, s.datev as datev, s.datesp, s.dateep, s.salary, u.salary as current_salary";
 		$sql.= " FROM ".MAIN_DB_PREFIX."payment_salary as s, ".MAIN_DB_PREFIX."user as u";
@@ -172,7 +172,7 @@ if ($conf->tax->enabled)
 	// Social contributions only
 	if (GETPOST("mode") != 'sconly')
 	{
-		print_fiche_titre($langs->trans("SocialContributionsPayments").($year?' ('.$langs->trans("Year").' '.$year.')':''), '', '');
+		print load_fiche_titre($langs->trans("SocialContributionsPayments").($year?' ('.$langs->trans("Year").' '.$year.')':''), '', '');
 	}
 
 	print '<table class="noborder" width="100%">';
@@ -286,7 +286,7 @@ if ($conf->tax->enabled)
 
 		$tva = new Tva($db);
 
-		print_fiche_titre($langs->trans("VATPayments").($year?' ('.$langs->trans("Year").' '.$year.')':''), '', '');
+		print load_fiche_titre($langs->trans("VATPayments").($year?' ('.$langs->trans("Year").' '.$year.')':''), '', '');
 
 		$sql = "SELECT pv.rowid, pv.amount, pv.label, pv.datev as dm";
 		$sql.= " FROM ".MAIN_DB_PREFIX."tva as pv";
@@ -386,7 +386,7 @@ while($j<$numlt)
 
 		$tva = new Tva($db);
 
-		print_fiche_titre($langs->transcountry(($j==1?"LT1Payments":"LT2Payments"),$mysoc->country_code).($year?' ('.$langs->trans("Year").' '.$year.')':''), '', '');
+		print load_fiche_titre($langs->transcountry(($j==1?"LT1Payments":"LT2Payments"),$mysoc->country_code).($year?' ('.$langs->trans("Year").' '.$year.')':''), '', '');
 
 
 		$sql = "SELECT pv.rowid, pv.amount, pv.label, pv.datev as dm, pv.datep as dp";

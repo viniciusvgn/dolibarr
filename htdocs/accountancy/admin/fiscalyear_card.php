@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2014-2015  Alexandre Spangaro	<alexandre.spangaro@gmail.com>
+/* Copyright (C) 2014-2015  Alexandre Spangaro	<aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -170,7 +170,7 @@ $form = new Form($db);
 */
 if ($action == 'create')
 {
-    print_fiche_titre($langs->trans("NewFiscalYear"));
+    print load_fiche_titre($langs->trans("NewFiscalYear"));
 
     print '<form action="'.$_SERVER["PHP_SELF"].'" method="POST">';
     print '<input type="hidden" name="token" value="'.$_SESSION['newtoken'].'">';

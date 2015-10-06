@@ -35,7 +35,6 @@ IfDatabaseExistsGoBackAndCheckCreate=Ef skráð er þegar til, farðu til baka o
 WarningBrowserTooOld=Too old version of browser. Upgrading your browser to a recent version of Firefox, Chrome or Opera is highly recommanded.
 PHPVersion=PHP Version
 YouCanContinue=Þú getur haldið áfram ...
-PleaseBePatient=Vinsamlegast sýnið þolinmæði ...
 License=Using leyfi
 ConfigurationFile=Stillingar skrá
 WebPagesDirectory=Listinn þar vefsíðum eru geymd
@@ -210,6 +209,6 @@ MigrationActioncommElement=Uppfæra upplýsingar um aðgerðir
 MigrationPaymentMode=Gögn fólksflutninga í ham greiðslu
 MigrationCategorieAssociation=Migration of categories
 MigrationEvents=Migration of events to add event owner into assignement table
-
+MigrationReloadModule=Reload module %s
 ShowNotAvailableOptions=Show not available options
 HideNotAvailableOptions=Hide not available options

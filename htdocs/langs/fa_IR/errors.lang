@@ -63,9 +63,9 @@ ErrorSizeTooLongForVarcharType=حجم بیش از حد طولانی برای ن�
 ErrorNoValueForSelectType=لطفا ارزش برای انتخاب لیست را پر کنید
 ErrorNoValueForCheckBoxType=لطفا ارزش برای استخراج را پر کنید
 ErrorNoValueForRadioType=لطفا ارزش برای فهرست های رادیویی را پر کنید
-ErrorBadFormatValueList=ارزش لیست نیست می توانید بیش از یک آمده <u>است:٪ s را،</u> اما باید حداقل یک: هیدرولیکی Llave، VALORES
+ErrorBadFormatValueList=The list value cannot have more than one comma: <u>%s</u>, but need at least one: key,value
 ErrorFieldCanNotContainSpecialCharacters=<b>٪</b> درست <b>ها</b> باید شامل کاراکترهای خاص نیست.
-ErrorFieldCanNotContainSpecialNorUpperCharacters=<b>٪</b> درست <b>ها</b> باید شامل کاراکترهای خاص، و نه حروف بزرگ نیست.
+ErrorFieldCanNotContainSpecialNorUpperCharacters=Field <b>%s</b> must not contain special characters, nor upper case characters and cannot contain only numbers.
 ErrorNoAccountancyModuleLoaded=بدون ماژول حسابداری فعال
 ErrorExportDuplicateProfil=این نام مشخصات در حال حاضر برای این مجموعه صادرات وجود دارد.
 ErrorLDAPSetupNotComplete=تطبیق Dolibarr-LDAP کامل نیست.
@@ -79,7 +79,7 @@ ErrorModuleRequireJavascript=جاوا اسکریپت نمی باید غیر فع
 ErrorPasswordsMustMatch=هر دو کلمه عبور تایپ شده باید با یکدیگر مطابقت
 ErrorContactEMail=یک خطای فنی رخ داد. لطفا، با مدیر سایت تماس به زیر ایمیل <b>از٪ s</b> EN ارائه کد <b>خطا٪ s</b> در پیام خود، و یا حتی بهتر با اضافه کردن یک کپی روی صفحه نمایش از این صفحه.
 ErrorWrongValueForField=ارزش اشتباه برای تعداد <b>فیلد٪ s</b> (مقدار <b>«٪ s» به</b> عبارت منظم حکومت <b>از٪ s</b> مطابقت ندارد)
-ErrorFieldValueNotIn=Wrong value for field number <b>%s</b> (value '<b>%s</b>' is not a value available into field <b>%s</b> of table <b>%s</b> = <b>%s</b>)
+ErrorFieldValueNotIn=Wrong value for field number <b>%s</b> (value '<b>%s</b>' is not a value available into field <b>%s</b> of table <b>%s</b>)
 ErrorFieldRefNotIn=ارزش اشتباه برای تعداد <b>فیلد٪ s</b> (مقدار <b>«٪ s»</b> است <b>از٪ s</b> کد عکس موجود نیست)
 ErrorsOnXLines=خطا <b>در٪ s را</b> ثبت منبع (ها)
 ErrorFileIsInfectedWithAVirus=برنامه آنتی ویروس قادر به اعتبار فایل (فایل ممکن است توسط یک ویروس آلوده)
@@ -171,6 +171,7 @@ ErrorGlobalVariableUpdater5=No global variable selected
 ErrorFieldMustBeANumeric=Field <b>%s</b> must be a numeric value
 ErrorFieldMustBeAnInteger=Field <b>%s</b> must be an integer
 ErrorMandatoryParametersNotProvided=Mandatory parameter(s) not provided
+ErrorOppStatusRequiredIfAmount=You set an estimated amount for this opportunity/lead. So you must also enter its status
 
 # Warnings
 WarningMandatorySetupNotComplete=پارامترهای راه اندازی اجباری هنوز تعریف نشده
@@ -190,5 +191,5 @@ WarningClickToDialUserSetupNotComplete=راه اندازی از اطلاعات C
 WarningNotRelevant=عملیات بی ربط برای این مجموعه داده
 WarningFeatureDisabledWithDisplayOptimizedForBlindNoJs=قابلیت غیر فعال زمانی که راه اندازی صفحه نمایش برای فرد نابینا یا از مرورگرهای متن بهینه شده است.
 WarningPaymentDateLowerThanInvoiceDate=Payment date (%s) is earlier than invoice date (%s) for invoice %s.
-WarningTooManyDataPleaseUseMoreFilters=Too many data. Please use more filters
+WarningTooManyDataPleaseUseMoreFilters=Too many data (more than %s lines). Please use more filters or set the constant %s to a higher limit.
 WarningSomeLinesWithNullHourlyRate=Some times were recorded by users when their hourly rate was not defined. A value of 0 was used but this may result in wrong valuation of time spent.

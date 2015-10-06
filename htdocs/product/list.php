@@ -54,6 +54,7 @@ $tosell = GETPOST("tosell", 'int');
 $tobuy = GETPOST("tobuy", 'int');
 $fourn_id = GETPOST("fourn_id",'int');
 $catid = GETPOST('catid','int');
+$optioncss = GETPOST('optioncss','alpha');
 
 $sortfield = GETPOST("sortfield",'alpha');
 $sortorder = GETPOST("sortorder",'alpha');
@@ -239,6 +240,7 @@ else
     	$param.=($fourn_id?"&amp;fourn_id=".$fourn_id:"");
     	$param.=($search_categ?"&amp;search_categ=".$search_categ:"");
     	$param.=isset($type)?"&amp;type=".$type:"";
+		if ($optioncss != '') $param.='&optioncss='.$optioncss;
 
     	print_barre_liste($texte, $page, "list.php", $param, $sortfield, $sortorder, '', $num, $nbtotalofrecords,'title_products.png');
 
@@ -272,6 +274,7 @@ else
     	else
     	{
     		print '<form action="'.$_SERVER["PHP_SELF"].'" method="post" name="formulaire">';
+            if ($optioncss != '') print '<input type="hidden" name="optioncss" value="'.$optioncss.'">';
     		print '<input type="hidden" name="token" value="'.$_SESSION['newtoken'].'">';
     		print '<input type="hidden" name="action" value="list">';
     		print '<input type="hidden" name="sortfield" value="'.$sortfield.'">';
@@ -315,13 +318,13 @@ else
     			$titlefield=$langs->trans("SellingPrice");
     		   	if (! empty($conf->global->PRODUIT_CUSTOMER_PRICES))
    				{
-					$titlefields=$form->textwithpicto($langs->trans("SellingPrice"), $langs->trans("DefaultPriceRealPriceMayDependOnCustomer"));
+					$titlefield=$form->textwithpicto($langs->trans("SellingPrice"), $langs->trans("DefaultPriceRealPriceMayDependOnCustomer"));
     			}
-    			print_liste_field_titre($titlefields, $_SERVER["PHP_SELF"], "p.price",$param,"",'align="right"',$sortfield,$sortorder);
+    			print_liste_field_titre($titlefield, $_SERVER["PHP_SELF"], "p.price",$param,"",'align="right"',$sortfield,$sortorder);
     		}
-    		if ($user->rights->fournisseur->lire) print '<td class="liste_titre" align="right">'.$langs->trans("BuyingPriceMinShort").'</td>';
-    		if (! empty($conf->stock->enabled) && $user->rights->stock->lire && $type != 1) print '<td class="liste_titre" align="right">'.$langs->trans("DesiredStock").'</td>';
-    		if (! empty($conf->stock->enabled) && $user->rights->stock->lire && $type != 1) print '<td class="liste_titre" align="right">'.$langs->trans("PhysicalStock").'</td>';
+    		if ($user->rights->fournisseur->lire) print_liste_field_titre($langs->trans("BuyingPriceMinShort"), '', '', '', '', 'align="right"');
+    		if (! empty($conf->stock->enabled) && $user->rights->stock->lire && $type != 1) print_liste_field_titre($langs->trans("DesiredStock"), '', '', '', '', 'align="right"');
+    		if (! empty($conf->stock->enabled) && $user->rights->stock->lire && $type != 1) print_liste_field_titre($langs->trans("PhysicalStock"), '', '', '', '', 'align="right"');
     		print_liste_field_titre($langs->trans("Sell"), $_SERVER["PHP_SELF"], "p.tosell",$param,"",'align="center"',$sortfield,$sortorder);
             print_liste_field_titre($langs->trans("Buy"), $_SERVER["PHP_SELF"], "p.tobuy",$param,"",'align="center"',$sortfield,$sortorder);
             print_liste_field_titre('',$_SERVER["PHP_SELF"],"",'','','',$sortfield,$sortorder,'maxwidthsearch ');
@@ -553,7 +556,7 @@ else
     		$param.=($fourn_id?"&fourn_id=".$fourn_id:"");
     		$param.=($search_categ?"&search_categ=".$search_categ:"");
     		$param.=isset($type)?"&type=".$type:"";
-    		print_barre_liste('', $page, "list.php", $param, $sortfield, $sortorder,'',$num,$nbtotalofrecords);
+    		print_barre_liste('', $page, $_SERVER["PHP_SELF"], $param, $sortfield, $sortorder, '', $num, $nbtotalofrecords, '', '', '', 'paginationatbottom');
 
     		$db->free($resql);
 

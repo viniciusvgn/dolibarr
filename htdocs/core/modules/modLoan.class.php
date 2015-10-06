@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2014		Alexandre Spangaro	 <alexandre.spangaro@gmail.com>
+/* Copyright (C) 2014		Alexandre Spangaro	 <aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ class modLoan extends DolibarrModules
 		// Config pages
 		$this->config_page_url = array('loan.php');
 
-		// Dependances
+		// Dependencies
 		$this->depends = array();
 		$this->requiredby = array();
 		$this->conflictwith = array();

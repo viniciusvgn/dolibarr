@@ -1,6 +1,6 @@
 <?php
 /* Copyright (C) 2013	Jean-François Ferry	 <jfefe@aternatik.fr>
- * Copyright (C) 2015	Alexandre Spangaro   <alexandre.spangaro@gmail.com>
+ * Copyright (C) 2015	Alexandre Spangaro   <aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -123,7 +123,7 @@ if (! $action)
 {
 	$pagetitle=$langs->trans('AddResource');
 	llxHeader('',$pagetitle,'');
-	print_fiche_titre($pagetitle,'','title_generic');
+	print load_fiche_titre($pagetitle,'','title_generic');
 
 	print '<form method="post" action="'.$_SERVER['PHP_SELF'].'" name="add_resource">';
 	print '<input type="hidden" name="action" value="confirm_add_resource" />';

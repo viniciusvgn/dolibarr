@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2013-2014 Alexandre Spangaro   <alexandre.spangaro@gmail.com>
+/* Copyright (C) 2013-2014 Alexandre Spangaro   <aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ $title = $langs->trans('FiscalYears');
 
 llxHeader('',$title,LOG_ERR);
 
-print_fiche_titre($langs->trans('FiscalYears'));
+print load_fiche_titre($langs->trans('FiscalYears'));
 
 $sql = "SELECT f.rowid, f.label, f.date_start, f.date_end, f.statut, f.entity";
 $sql.= " FROM ".MAIN_DB_PREFIX."accounting_fiscalyear as f";

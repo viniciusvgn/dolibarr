@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2013   Alexandre Spangaro  <alexandre.spangaro@gmail.com>
+/* Copyright (C) 2013   Alexandre Spangaro  <aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ class modSkype extends DolibarrModules
 	    $this->conflictwith = array();	// List of modules id this module is in conflict with
         $this->langfiles = array();
 
-        // Constantes
+        // Constants
         //-----------
 
 

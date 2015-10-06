@@ -4,7 +4,7 @@
  * Copyright (C) 2004-2011 Laurent Destailleur  <eldy@users.sourceforge.net>
  * Copyright (C) 2005-2012 Regis Houssin        <regis.houssin@capnetworks.com>
  * Copyright (C) 2013	   Florian Henry        <florian.henry@open-concept.pro>
- * Copyright (C) 2015      Alexandre Spangaro   <alexandre.spangaro@gmail.com>
+ * Copyright (C) 2015      Alexandre Spangaro   <aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -166,7 +166,7 @@ $form=new Form($db);
 if (! $rowid && $action != 'create' && $action != 'edit')
 {
 
-	print_fiche_titre($langs->trans("MembersTypes"));
+	print load_fiche_titre($langs->trans("MembersTypes"));
 
 	dol_fiche_head('');
 
@@ -238,7 +238,7 @@ if ($action == 'create')
 {
 	$object = new AdherentType($db);
 
-	print_fiche_titre($langs->trans("NewMemberType"));
+	print load_fiche_titre($langs->trans("NewMemberType"));
 
 	print '<form action="'.$_SERVER['PHP_SELF'].'" method="POST">';
 	print '<input type="hidden" name="token" value="'.$_SESSION['newtoken'].'">';

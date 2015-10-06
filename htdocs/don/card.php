@@ -3,7 +3,7 @@
  * Copyright (C) 2004-2015	Laurent Destailleur		<eldy@users.sourceforge.net>
  * Copyright (C) 2005-2012	Regis Houssin			<regis.houssin@capnetworks.com>
  * Copyright (C) 2013       Florian Henry		  	<florian.henry@open-concept.pro>
- * Copyright (C) 2015       Alexandre Spangaro	  	<alexandre.spangaro@gmail.com>
+ * Copyright (C) 2015       Alexandre Spangaro	  	<aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/class/extrafields.class.php';
 if (! empty($conf->projet->enabled))
 {
 	require_once DOL_DOCUMENT_ROOT.'/core/class/html.formprojet.class.php';
+	require_once DOL_DOCUMENT_ROOT.'/projet/class/project.class.php';
 }
 require_once DOL_DOCUMENT_ROOT.'/core/class/doleditor.class.php';
 
@@ -228,6 +229,25 @@ if ($action == 'set_paid')
 	    setEventMessage($object->error, 'errors');
     }
 }
+// Remove file in doc form
+if ($action == 'remove_file')
+{
+	$object = new Don($db, 0, $_GET['id']);
+	if ($object->fetch($id))
+	{
+		require_once DOL_DOCUMENT_ROOT.'/core/lib/files.lib.php';
+
+		$object->fetch_thirdparty();
+
+		$langs->load("other");
+		$upload_dir = $conf->don->dir_output;
+		$file = $upload_dir . '/' . GETPOST('file');
+		$ret=dol_delete_file($file,0,0,0,$object);
+		if ($ret) setEventMessage($langs->trans("FileWasRemoved", GETPOST('urlfile')));
+		else setEventMessage($langs->trans("ErrorFailToDeleteFile", GETPOST('urlfile')), 'errors');
+		$action='';
+	}
+}
 
 /*
  * Build doc
@@ -273,7 +293,7 @@ $formcompany = new FormCompany($db);
 
 if ($action == 'create')
 {
-	print_fiche_titre($langs->trans("AddDonation"));
+	print load_fiche_titre($langs->trans("AddDonation"));
 
 	print '<form name="add" action="' . $_SERVER["PHP_SELF"] . '" method="POST">';
 	print '<input type="hidden" name="token" value="'.$_SESSION['newtoken'].'">';
@@ -595,8 +615,8 @@ if (! empty($id) && $action != 'edit')
 			print "<tr ".$bc[$var]."><td>";
 			print '<a href="'.DOL_URL_ROOT.'/don/payment/card.php?id='.$objp->rowid.'">'.img_object($langs->trans("Payment"),"payment").' '.$objp->rowid.'</a></td>';
 			print '<td>'.dol_print_date($db->jdate($objp->dp),'day')."</td>\n";
-		        $labeltype=$langs->trans("PaymentType".$object->type_code)!=("PaymentType".$object->type_code)?$langs->trans("PaymentType".$object->type_code):$object->paiement_type;
-                               print "<td>".$labeltype.' '.$object->num_paiement."</td>\n";
+		        $labeltype=$langs->trans("PaymentType".$objp->type_code)!=("PaymentType".$objp->type_code)?$langs->trans("PaymentType".$objp->type_code):$objp->paiement_type;
+                               print "<td>".$labeltype.' '.$objp->num_payment."</td>\n";
 			print '<td align="right">'.price($objp->amount)."</td><td>&nbsp;".$langs->trans("Currency".$conf->currency)."</td>\n";
 			print "</tr>";
 			$totalpaid += $objp->amount;
@@ -658,8 +678,10 @@ if (! empty($id) && $action != 'edit')
         print '<tr>';
 		print '<td>'.$langs->trans("Project").'</td>';
 		print '<td>';
-		$object->fetch_projet();
-		print $object->project->getNomUrl(4);
+			$projettmp=new Project($db);
+			$projettmp->id=$object->fk_projet;
+			$projettmp->ref=$object->project;
+			print $projettmp->getNomUrl(1);
 		print '</td>';
 		print '</tr>';
     }
@@ -740,13 +762,11 @@ if (! empty($id) && $action != 'edit')
 	/*
 	 * Documents generes
 	 */
-	$filename=dol_sanitizeFileName($object->id);
-	$filedir=$conf->don->dir_output . '/' . get_exdir($filename,2,0,1,$object,'donation'). '/'. dol_sanitizeFileName($object->ref);
-	$urlsource=$_SERVER['PHP_SELF'].'?rowid='.$object->id;
-	//            $genallowed=($fac->statut == 1 && ($fac->paye == 0 || $user->admin) && $user->rights->facture->creer);
-	//            $delallowed=$user->rights->facture->supprimer;
-	$genallowed=1;
-	$delallowed=0;
+	$filename	=	dol_sanitizeFileName($object->id);
+	$filedir	=	$conf->don->dir_output . "/" . dol_sanitizeFileName($object->id);
+	$urlsource	=	$_SERVER['PHP_SELF'].'?rowid='.$object->id;
+	$genallowed	=	($object->statut == 2 && ($object->paid == 0 || $user->admin) && $user->rights->don->creer);
+	$delallowed	=	$user->rights->don->supprimer;
 
 	$var=true;
 

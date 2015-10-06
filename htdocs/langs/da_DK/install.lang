@@ -35,7 +35,6 @@ IfDatabaseExistsGoBackAndCheckCreate=Hvis database findes allerede, gå tilbage 
 WarningBrowserTooOld=Too old version of browser. Upgrading your browser to a recent version of Firefox, Chrome or Opera is highly recommanded.
 PHPVersion=PHP Version
 YouCanContinue=Du kan fortsætte ...
-PleaseBePatient=Vær tålmodig ...
 License=Bruger licens
 ConfigurationFile=Opsætningsfil
 WebPagesDirectory=Mappe, hvor websider er gemt
@@ -210,6 +209,6 @@ MigrationActioncommElement=Opdatere data om tiltag
 MigrationPaymentMode=Data migration for betaling mode
 MigrationCategorieAssociation=Migration of categories
 MigrationEvents=Migration of events to add event owner into assignement table
-
+MigrationReloadModule=Reload module %s
 ShowNotAvailableOptions=Show not available options
 HideNotAvailableOptions=Hide not available options

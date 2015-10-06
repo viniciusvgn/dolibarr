@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2014		Alexandre Spangaro   <alexandre.spangaro@gmail.com>
+/* Copyright (C) 2014		Alexandre Spangaro   <aspangaro.dolibarr@gmail.com>
  * Copyright (C) 2015       Frederic France      <frederic.france@free.fr>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -156,7 +156,7 @@ if ($_GET["action"] == 'create')
 {
 	$total = $loan->capital;
 
-	print_fiche_titre($langs->trans("DoPayment"));
+	print load_fiche_titre($langs->trans("DoPayment"));
 	print "<br>\n";
 
 	print '<form name="add_payment" action="'.$_SERVER['PHP_SELF'].'" method="post">';

@@ -3,7 +3,7 @@
  * Copyright (C) 2004-2015 Laurent Destailleur  <eldy@users.sourceforge.net>
  * Copyright (C) 2005-2010 Regis Houssin        <regis.houssin@capnetworks.com>
  * Copyright (C) 2012	   Juanjo Menent        <jmenent@2byte.es>
- * Copyright (C) 2015      Alexandre Spangaro	<alexandre.spangaro@gmail.com>
+ * Copyright (C) 2015      Alexandre Spangaro	<aspangaro.dolibarr@gmail.com>
  * Copyright (C) 2015      Marcos García        <marcosgdf@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -87,7 +87,7 @@ $projectid=$id;	// For backward compatibility
 
 $object = new Project($db);
 
-include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php';  // Must be include, not includ_once
+include DOL_DOCUMENT_ROOT.'/core/actions_fetchobject.inc.php';  // Must be include, not include_once
 
 // Security check
 $socid=0;
@@ -347,7 +347,7 @@ $langs->load("margins");
 //print load_fiche_titre($langs->trans("Profit"),'','title_accountancy');
 print '<div class="center">'.img_picto("", "title_accountancy").' '.$langs->trans("Profit").'</div><br>';
 
-print '<table class="noborder">';
+print '<table class="noborder" width="100%">';
 print '<tr class="liste_titre">';
 print '<td align="left" width="200">'.$langs->trans("Element").'</td>';
 print '<td align="right" width="100">'.$langs->trans("Number").'</td>';
@@ -475,7 +475,7 @@ foreach ($listofreferent as $key => $value)
 }
 // and the final balance
 print '<tr class="liste_total">';
-print '<td align="right" colspan=2 >'.$langs->trans("Total").'</td>';
+print '<td align="right" colspan=2 >'.$langs->trans("Profit").'</td>';
 print '<td align="right" >'.price($balance_ht).'</td>';
 print '<td align="right" >'.price($balance_ttc).'</td>';
 print '</tr>';
@@ -530,7 +530,7 @@ foreach ($listofreferent as $key => $value)
 			$addform.='</form>';
 		}
 
-		print_fiche_titre($langs->trans($title), $addform, '');
+		print load_fiche_titre($langs->trans($title), $addform, '');
 
 		print '<table class="noborder" width="100%">';
 
@@ -602,6 +602,7 @@ foreach ($listofreferent as $key => $value)
 					$expensereport->fetch($element->fk_expensereport);
 				}
 
+				//print 'xxx'.$tablename;
 				//print $classname;
 
 				if ($breakline && $saved_third_id != $element->thirdparty->id)
@@ -620,7 +621,7 @@ foreach ($listofreferent as $key => $value)
 				$qualifiedfortotal=true;
 				if ($key == 'invoice')
 				{
-					if ($element->close_code == 'replaced') $qualifiedfortotal=false;	// Replacement invoice
+					if (! empty($element->close_code) && $element->close_code == 'replaced') $qualifiedfortotal=false;	// Replacement invoice, do not include into total
 				}
 
 				$var=!$var;

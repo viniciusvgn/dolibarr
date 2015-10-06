@@ -1,7 +1,7 @@
 <?php
 /* Copyright (C) 2008-2012	Laurent Destailleur	<eldy@users.sourceforge.net>
  * Copyright (C) 2008-2012	Regis Houssin		<regis.houssin@capnetworks.com>
- * Copyright (C) 2015	    Alexandre Spangaro  <alexandre.spangaro@gmail.com>
+ * Copyright (C) 2015	    Alexandre Spangaro  <aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -153,7 +153,7 @@ if ($action == 'create')
 	print '<input type="hidden" name="action" value="add">';
 
 	$title=$langs->trans("ECMNewSection");
-	print_fiche_titre($title);
+	print load_fiche_titre($title);
 	
 	dol_fiche_head();
 
@@ -193,7 +193,7 @@ if (empty($action) || $action == 'delete_section')
 	//***********************
 	// List
 	//***********************
-	print_fiche_titre($langs->trans("ECMSectionOfDocuments"));
+	print load_fiche_titre($langs->trans("ECMSectionOfDocuments"));
 	print '<br>';
 
 /*

@@ -6,7 +6,7 @@
  * Copyright (C) 2013      Juanjo Menent	    <jmenent@2byte.es>
  * Copyright (C) 2015      Jean-François Ferry	<jfefe@aternatik.fr>
  * Copyright (C) 2012      Cedric Salvador      <csalvador@gpcsolutions.fr>
- * Copyright (C) 2015      Alexandre Spangaro   <alexandre.spangaro@gmail.com>
+ * Copyright (C) 2015      Alexandre Spangaro   <aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -118,7 +118,7 @@ $companystatic = new Societe($db);
  */
 if ($action == 'create')
 {
-	print_fiche_titre($langs->trans("CreateRepeatableInvoice"),'','title_accountancy.png');
+	print load_fiche_titre($langs->trans("CreateRepeatableInvoice"),'','title_accountancy.png');
 
 	$object = new Facture($db);   // Source invoice
 	$product_static = new Product($db);
@@ -191,7 +191,7 @@ if ($action == 'create')
 		else if (empty($conf->product->enabled))
 			$title = $langs->trans("Services");
 
-		print_titre($title);
+		print load_fiche_titre($title);
 
 		/*
 		 * Invoice lines
@@ -456,7 +456,7 @@ else
 			else if (empty($conf->product->enabled))
 				$title = $langs->trans("Services");
 
-			print_titre($title);
+			print load_fiche_titre($title);
 
 			print '<table class="noborder" width="100%">';
 			print '<tr class="liste_titre">';
@@ -636,7 +636,7 @@ else
 					$i++;
 				}
 			}
-			else print '<tr><td>'.$langs->trans("NoneF").'</td></tr>';
+			else print '<tr '.$bc[false].'><td colspan="6">'.$langs->trans("NoneF").'</td></tr>';
 
 			print "</table>";
 			$db->free($resql);

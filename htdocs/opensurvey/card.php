@@ -220,7 +220,7 @@ else print dol_htmlentities($object->titre);
 print '</td></tr>';
 
 // Description
-print '<tr><td valign="top">'.$langs->trans("Description") .'</td><td colspan="2">';
+print '<tr><td class="tdtop">'.$langs->trans("Description") .'</td><td colspan="2">';
 if ($action == 'edit')
 {
 	$doleditor=new DolEditor('nouveauxcommentaires', dol_htmlentities($object->commentaires),'',120,'dolibarr_notes','In',1,1,1,ROWS_7,120);
@@ -228,12 +228,7 @@ if ($action == 'edit')
 }
 else
 {
-	if (empty($conf->fckeditor->enabled)) print dol_htmlentitiesbr($object->commentaires);
-	else
-	{
-		$doleditor=new DolEditor('nouveauxcommentaires', dol_htmlentities($object->commentaires),'',120,'dolibarr_notes','In',1,1,1,ROWS_7,120,1);
-		$doleditor->Create(0,'');
-	}
+	 print (dol_textishtml($object->commentaires)?$object->commentaires:dol_nl2br($object->commentaires,1,true));
 }
 print '</td></tr>';
 
@@ -253,7 +248,7 @@ if (!$object->fk_user_creat) {
 print '<tr><td>'.$langs->trans('ToReceiveEMailForEachVote').'</td><td colspan="2">';
 if ($action == 'edit')
 {
-	print '<input type="checkbox" name="mailsonde" size="40"'.($object->mailsonde?' checked':'').'">';
+	print '<input type="checkbox" name="mailsonde" '.($object->mailsonde?'checked="checked"':'').'">';
 }
 else {
 	print yn($object->mailsonde);
@@ -271,7 +266,7 @@ print '</td></tr>';
 print '<tr><td>'.$langs->trans('CanComment').'</td><td colspan="2">';
 if ($action == 'edit')
 {
-	print '<input type="checkbox" name="cancomment" size="40"'.($object->allow_comments?' checked':'').'">';
+	print '<input type="checkbox" name="cancomment" '.($object->allow_comments?'checked="checked"':'').'">';
 }
 else print yn($object->allow_comments);
 print '</td></tr>';
@@ -280,7 +275,7 @@ print '</td></tr>';
 print '<tr><td>'.$langs->trans('CanSeeOthersVote').'</td><td colspan="2">';
 if ($action == 'edit')
 {
-	print '<input type="checkbox" name="canseeothersvote" size="40"'.($object->allow_spy?' checked':'').'">';
+	print '<input type="checkbox" name="canseeothersvote" '.($object->allow_spy?'checked="checked"':'').'">';
 }
 else print yn($object->allow_spy);
 print '</td></tr>';
@@ -316,12 +311,15 @@ if ($action != 'edit')
 {
 	print '<script type="text/javascript">
                jQuery(document).ready(function () {
-				    jQuery("#opensurveyurl").focus(function() { jQuery(this).select(); } );
+				    jQuery("#opensurveyurl").click(function() { jQuery(this).select(); } );
 				});
 		    </script>';
 	print ' <a href="'.$url.'" target="_blank">'.$langs->trans("Link").'</a>';
 
 }
+
+print '</td></tr>';
+
 print '</table>';
 
 dol_fiche_end();
@@ -363,7 +361,7 @@ print '<br>';
 
 print '<form name="formulaire5" action="#" method="POST">'."\n";
 
-print_fiche_titre($langs->trans("CommentsOfVoters"),'','');
+print load_fiche_titre($langs->trans("CommentsOfVoters"),'','');
 
 // Comment list
 $comments = $object->getComments();

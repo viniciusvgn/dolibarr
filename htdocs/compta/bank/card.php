@@ -3,7 +3,7 @@
  * Copyright (C) 2003		Jean-Louis Bergamo	<jlb@j1b.org>
  * Copyright (C) 2004-2015	Laurent Destailleur	<eldy@users.sourceforge.net>
  * Copyright (C) 2005-2009	Regis Houssin		<regis.houssin@capnetworks.com>
- * Copyright (C) 2014-2015	Alexandre Spangaro	<alexandre.spangaro@gmail.com>
+ * Copyright (C) 2014-2015	Alexandre Spangaro	<aspangaro.dolibarr@gmail.com>
  * Copyright (C) 2015           Jean-François Ferry	<jfefe@aternatik.fr>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -243,7 +243,7 @@ if ($action == 'create')
 {
 	$account=new Account($db);
 
-	print_fiche_titre($langs->trans("NewFinancialAccount"), '', 'title_bank.png');
+	print load_fiche_titre($langs->trans("NewFinancialAccount"), '', 'title_bank.png');
 
     if ($conf->use_javascript_ajax)
     {
@@ -579,7 +579,7 @@ else
 
 		// State
 		print '<tr><td>'.$langs->trans('State').'</td><td>';
-		if ($account->fk_departement > 0) print getState($account->fk_departement);
+		if ($account->state_id > 0) print getState($account->state_id);
 		print '</td></tr>';
 
 		// Conciliate
@@ -777,7 +777,7 @@ else
         $account = new Account($db);
         $account->fetch(GETPOST('id','int'));
 
-        print_fiche_titre($langs->trans("EditFinancialAccount"), '', 'title_bank.png');
+        print load_fiche_titre($langs->trans("EditFinancialAccount"), '', 'title_bank.png');
 
         if ($conf->use_javascript_ajax)
         {

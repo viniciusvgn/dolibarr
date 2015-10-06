@@ -173,7 +173,7 @@ function paypaladmin_prepare_head()
 	$head = array();
 
 	$head[$h][0] = DOL_URL_ROOT."/paypal/admin/paypal.php";
-	$head[$h][1] = $langs->trans("Account");
+	$head[$h][1] = $langs->trans("PayPal");
 	$head[$h][2] = 'paypalaccount';
 	$h++;
 
@@ -311,7 +311,7 @@ function getPaypalPaymentUrl($mode,$type,$ref='',$amount='9.99',$freetag='your_f
     }
 
     // For multicompany
-    //$out.="&entity=".$conf->entity; // This should not be into link. Link contains already a ref of an object that allow to retreive entity
+    $out.="&entity=".$conf->entity; // Check the entity because He may be the same reference in several entities
 
     return $out;
 }

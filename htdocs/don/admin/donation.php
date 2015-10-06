@@ -2,7 +2,7 @@
 /* Copyright (C) 2005-2010  Laurent Destailleur  	<eldy@users.sourceforge.net>
  * Copyright (C) 2012-2015	Juanjo Menent			<jmenent@2byte.es>
  * Copyright (C) 2013       Philippe Grand			<philippe.grand@atoo-net.com>
- * Copyright (C) 2015       Alexandre Spangaro		<alexandre.spangaro@gmail.com>
+ * Copyright (C) 2015       Alexandre Spangaro		<aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -199,7 +199,7 @@ $form=new Form($db);
 
 llxHeader('',$langs->trans("DonationsSetup"),'DonConfiguration');
 $linkback='<a href="'.DOL_URL_ROOT.'/admin/modules.php">'.$langs->trans("BackToModuleList").'</a>';
-print_fiche_titre($langs->trans("DonationsSetup"),$linkback,'title_setup');
+print load_fiche_titre($langs->trans("DonationsSetup"),$linkback,'title_setup');
 
 $head = donation_admin_prepare_head();
 
@@ -208,7 +208,7 @@ dol_fiche_head($head, 'general', $langs->trans("Donations"), 0, 'payment');
 /*
  *  Params
  */
-print_titre($langs->trans("Options"));
+print load_fiche_titre($langs->trans("Options"));
 
 print '<table class="noborder" width="100%">';
 print '<tr class="liste_titre">';
@@ -255,7 +255,7 @@ print '</form>';
 if (preg_match('/fr/i',$conf->global->MAIN_INFO_SOCIETE_COUNTRY))
 {
 	print '<br>';
-	print_titre($langs->trans("FrenchOptions"));
+	print load_fiche_titre($langs->trans("FrenchOptions"));
 
 	print '<table class="noborder" width="100%">';
 	print '<tr class="liste_titre">';
@@ -308,7 +308,7 @@ if (preg_match('/fr/i',$conf->global->MAIN_INFO_SOCIETE_COUNTRY))
 
 // Document templates
 print '<br>';
-print_titre($langs->trans("DonationsModels"));
+print load_fiche_titre($langs->trans("DonationsModels"));
 
 // Defini tableau def de modele
 $type='donation';

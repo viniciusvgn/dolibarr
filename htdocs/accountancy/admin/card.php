@@ -1,6 +1,6 @@
 <?PHP
 /* Copyright (C) 2013-2014 Olivier Geffroy      <jeff@jeffinfo.com>
- * Copyright (C) 2013-2015 Alexandre Spangaro   <alexandre.spangaro@gmail.com>
+ * Copyright (C) 2013-2015 Alexandre Spangaro   <aspangaro.dolibarr@gmail.com>
  * Copyright (C) 2014	   Florian Henry		<florian.henry@open-concept.pro>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -139,7 +139,7 @@ $htmlacc = new FormVentilation($db);
 
 if ($action == 'create')
 {
-	print_fiche_titre($langs->trans('NewAccount'));
+	print load_fiche_titre($langs->trans('NewAccount'));
 
 	print '<form name="add" action="' . $_SERVER["PHP_SELF"] . '" method="POST">' . "\n";
 	print '<input type="hidden" name="token" value="' . $_SESSION['newtoken'] . '">';

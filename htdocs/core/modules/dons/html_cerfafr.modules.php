@@ -3,7 +3,7 @@
  * Copyright (C) 2005-2006	Laurent Destailleur		<eldy@users.sourceforge.net>
  * Copyright (C) 2012		Regis Houssin			<regis.houssin@capnetworks.com>
  * Copyright (C) 2012       Marcos García           <marcosgdf@gmail.com>
- * Copyright (C) 2014-2015  Alexandre Spangaro		<alexandre.spangaro@gmail.com>
+ * Copyright (C) 2014-2015  Alexandre Spangaro		<aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -105,7 +105,7 @@ class html_cerfafr extends ModeleDon
 			else
 			{
 				$donref = dol_sanitizeFileName($don->ref);
-				$dir = $conf->don->dir_output . "/" . get_exdir($donref,2,0,1,$don,'donation') . "/" . dol_sanitizeFileName($don->ref);
+				$dir = $conf->don->dir_output . "/" . $donref;
 				$file = $dir . "/" . $donref . ".html";
 			}
 

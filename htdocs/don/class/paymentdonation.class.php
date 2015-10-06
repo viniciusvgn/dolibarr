@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2015       Alexandre Spangaro	  	<alexandre.spangaro@gmail.com>
+/* Copyright (C) 2015       Alexandre Spangaro	  	<aspangaro.dolibarr@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,9 +32,7 @@ class PaymentDonation extends CommonObject
 	public $element='payment_donation';			//!< Id that identify managed objects
 	public $table_element='payment_donation';	//!< Name of table without prefix where object is stored
 
-	var $id;
 	var $rowid;
-	var $ref;
 
 	var $fk_donation;
 	var $datec='';
@@ -44,7 +42,6 @@ class PaymentDonation extends CommonObject
     var $amounts=array();   // Array of amounts
 	var $typepayment;
 	var $num_payment;
-	var $note;
 	var $fk_bank;
 	var $fk_user_creat;
 	var $fk_user_modif;
@@ -90,8 +87,8 @@ class PaymentDonation extends CommonObject
 		// Clean parameters
 		if (isset($this->fk_donation)) 		$this->fk_donation=trim($this->fk_donation);
 		if (isset($this->amount))			$this->amount=trim($this->amount);
-		if (isset($this->typepayment))	    $this->typepayment=trim($this->typepayment);
-		if (isset($this->num_payment))		$this->num_payment=trim($this->num_payment);
+		if (isset($this->fk_typepayment))   $this->fk_typepayment=trim($this->fk_typepayment);
+		if (isset($this->num_payment))      $this->num_payment=trim($this->num_payment);
 		if (isset($this->note))				$this->note=trim($this->note);
 		if (isset($this->fk_bank))			$this->fk_bank=trim($this->fk_bank);
 		if (isset($this->fk_user_creat))	$this->fk_user_creat=trim($this->fk_user_creat);

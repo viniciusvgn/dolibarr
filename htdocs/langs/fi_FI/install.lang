@@ -35,7 +35,6 @@ IfDatabaseExistsGoBackAndCheckCreate=Jos tietokanta on jo olemassa, mene takaisi
 WarningBrowserTooOld=Selaimesi versio on liian vanha. Selaimen päivitys tuoreimpaan versioon on suositeltavaa. Suosittelemme selaimeksi Firefoxia, Chromea tai Operaa.
 PHPVersion=PHP Version
 YouCanContinue=Voit jatkaa ...
-PleaseBePatient=Ole kärsivällinen ...
 License=Käyttämällä lisenssi
 ConfigurationFile=Configuration file
 WebPagesDirectory=Directory jossa www-sivut on tallennettu
@@ -210,6 +209,6 @@ MigrationActioncommElement=Päivitä tiedot toimista
 MigrationPaymentMode=Tiedot muuttoliike maksua tilassa
 MigrationCategorieAssociation=Kategorioiden siirto 
 MigrationEvents=Migration of events to add event owner into assignement table
-
+MigrationReloadModule=Reload module %s
 ShowNotAvailableOptions=Näytä ei saatavilla olevat valinnat
 HideNotAvailableOptions=Piilota ei saatavilla olevat valinnat

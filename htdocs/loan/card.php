@@ -1,5 +1,5 @@
 <?php
-/* Copyright (C) 2014-2015	Alexandre Spangaro   <alexandre.spangaro@gmail.com>
+/* Copyright (C) 2014-2015	Alexandre Spangaro   <aspangaro.dolibarr@gmail.com>
  * Copyright (C) 2015       Frederic France      <frederic.france@free.fr>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -183,7 +183,7 @@ if ($action == 'create')
 	//WYSIWYG Editor
     require_once DOL_DOCUMENT_ROOT.'/core/class/doleditor.class.php';
 
-    print_fiche_titre($langs->trans("NewLoan"));
+    print load_fiche_titre($langs->trans("NewLoan"));
 
     $datec = dol_mktime(12, 0, 0, GETPOST('remonth','int'), GETPOST('reday','int'), GETPOST('reyear','int'));
 

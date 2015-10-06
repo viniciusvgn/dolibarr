@@ -33,9 +33,6 @@ class PaymentSocialContribution extends CommonObject
 	public $element='paiementcharge';			//!< Id that identify managed objects
 	public $table_element='paiementcharge';	//!< Name of table without prefix where object is stored
 
-	var $id;
-	var $ref;
-
 	var $fk_charge;
 	var $datec='';
 	var $tms='';
@@ -49,7 +46,6 @@ class PaymentSocialContribution extends CommonObject
     var $amounts=array();   // Array of amounts
 	var $fk_typepaiement;
 	var $num_paiement;
-	var $note;
 	var $fk_bank;
 	var $fk_user_creat;
 	var $fk_user_modif;
@@ -317,16 +313,19 @@ class PaymentSocialContribution extends CommonObject
 		global $conf, $langs;
 		$error=0;
 
+		dol_syslog(get_class($this)."::delete");
+
 		$this->db->begin();
 
-	    if (! $error)
+	    if ($this->bank_line > 0)
         {
-            $sql = "DELETE FROM ".MAIN_DB_PREFIX."bank_url";
-            $sql.= " WHERE type='payment_sc' AND url_id=".$this->id;
-
-            dol_syslog(get_class($this)."::delete", LOG_DEBUG);
-            $resql = $this->db->query($sql);
-            if (! $resql) { $error++; $this->errors[]="Error ".$this->db->lasterror(); }
+        	$accline = new AccountLine($this->db);
+			$accline->fetch($this->bank_line);
+			$result = $accline->delete();
+			if($result < 0) {
+				$this->errors[] = $accline->error;
+				$error++;
+			}
         }
 
 		if (! $error)
